@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Cadastro</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="login.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <form id="login-page" class="fade">
+            <section class="makelogin">
+                <h2>Bem vindo(a)!</h2>
+            </section>
+            <section class="inputs-container">
+                <div id="logins" class="logins">
+                    <p>Fazer login com:</p>
+                    <span id="login-email" onclick="criarInput('email')">E-mail</span>
+                    <span id="login-username" onclick="criarInput('username')">Usuário</span>
+                    <span id="login-cpf" onclick="criarInput('cpf')">CPF</span>
+                    <span id="login-cnpj" onclick="criarInput('cnpj')">CNPJ</span>
+                </div>
+                <div class="tipos-login" id="tipos-login">
+                    <input type="email" id="email" class="show1" placeholder="Email" required>
+                </div>
+                <div class="password-container">
+                    <input type="password" id="field-password" class="field-password" placeholder="Sua senha" required>
+                </div>
+            </section>
+
+            <section class="password-infos">
+                <div>
+                    <input type="checkbox">
+                    <span>Lembrar senha</span>
+                </div>
+                <a href="#">Esqueceu sua senha?</a>
+            </section>
+
+            <button id="btn-login">Login</button>
+
+            <footer>
+                <hr>
+                <span>Ainda não possui uma conta? <a onclick="mostrar('cadastro-page')">Cadastre-se</a></span>
+            </footer>
+        </form>
+
+        <form action="" method="post" id="cadastro-page" class="fade"
+            style="display: none; transition: 0.2s ease-in-out;">
+            <section class="makelogin">
+                <h2>Seja bem vindo(a)!</h2>
+            </section>
+            <section class="inputs-container">
+                <input type="text" placeholder="Nome completo" id="full_name" required>
+                <input type="email" placeholder="example@gmail.com" class="inputs-container email-cadastro email" required>
+                <div class="logins">
+                    <p>cadastrar com:</p>
+                <span id="login-cpf" onclick="criarInputCadastro('cpf')">CPF</span>
+                <span id="login-cnpj" onclick="criarInputCadastro('cnpj')">CNPJ</span>
+            </div>
+            <div id="tipos-cadastro" class="tipos-login">
+                <input type="text" placeholder="CPF" class="inputs-container cpf" id="cpf" onkeyup="formatCPF(this)" maxlength="14" required>
+            </div>
+                <div class="password-container">
+                    <input type="password" id="field-password" class="field-password password" placeholder="Crie sua senha"
+                        minlength="8" required>
+                </div>
+            </section>
+
+            <section class="password-infos">
+                <div>
+                    <input type="checkbox" required>
+                    <span>Aceito os <a href="termos.html" target="_blank">termos e condições</a></span>
+                </div>
+            </section>
+
+            <button id="btn-login">Cadastrar</button>
+
+            <footer>
+                <hr>
+                <span>Já possui uma conta? <a onclick="mostrar('login-page')">Faça o login</a></span>
+            </footer>
+        </form>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        function criarInput(type) {
+            const tiposLoginDiv = document.getElementById('tipos-login');
+
+            // Remove todos os inputs dentro da div tipos-login
+            while (tiposLoginDiv.firstChild) {
+                tiposLoginDiv.removeChild(tiposLoginDiv.firstChild);
+
+            }
+
+            // Cria um novo input baseado no tipo
+            let input;
+            if (type === 'email') {
+                input = document.createElement('input');
+                input.type = 'email';
+                input.placeholder = 'Email';
+                input.required = true;
+                input.className = 'show1';
+                input.id = 'email';
+            } else if (type === 'username') {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'Nome de Usuário';
+                input.required = true;
+                input.className = 'show1';
+            } else if (type === 'cpf') {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'CPF';
+                input.maxLength = 14;
+                input.required = true;
+                input.className = 'show1';
+                input.onkeyup = function () {
+                    formatCPF(this);
+                };
+            } else if (type === 'cnpj') {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'CNPJ';
+                input.maxLength = 18;
+                input.required = true;
+                input.className = 'show1';
+                input.onkeyup = function () {
+                    formatCNPJ(this);
+                };
+            }
+
+            // Adiciona o novo input à div tipos-login
+            tiposLoginDiv.appendChild(input);
+        }
+
+        function formatCPF(cpf) {
+            var value = cpf.value;
+            value = value.replace(/\D/g, "");
+            value = value.replace(/(\d{3})(\d)/, "$1.$2");
+            value = value.replace(/(\d{3})(\d)/, "$1.$2");
+            value = value.replace(/(\d{3})(\d{2})$/, "$1-$2");
+            cpf.value = value;
+        }
+
+        function formatCNPJ(cnpj) {
+            var value = cnpj.value;
+            value = value.replace(/\D/g, "");
+            value = value.replace(/^(\d{2})(\d)/, "$1.$2");
+            value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            value = value.replace(/(\d{4})(\d)/, "$1-$2");
+            cnpj.value = value;
+        }
+
+        function mostrar(id) {
+    const loginPage = document.getElementById('login-page');
+    const cadastroPage = document.getElementById('cadastro-page');
+
+    // Esconde ambos os formulários
+    loginPage.style.display = 'none';
+    cadastroPage.style.display = 'none';
+
+    // Pega o formulário que será mostrado
+    const pageToShow = document.getElementById(id);
+
+    // Cria a animação
+    let animation = anime.timeline({
+        targets: pageToShow,
+        duration: 300,  // Duração da animação em milissegundos
+        easing: 'easeInOutQuad'  // Função de suavização
+    });
+
+    // Adiciona animações à timeline
+    animation
+        .add({
+            opacity: [0, 1],  // Transição da opacidade de 0 para 1
+            scale: [0.7, 1],  // Transição do tamanho de 0.5 para 1
+            delay: 50,  // Atraso antes da animação começar
+            begin: function() {
+                pageToShow.style.display = 'flex';  // Mostra o formulário no início da animação
+            }
+        });
+
+    // Inicia a animação
+    animation.play();
+}
+
+        function criarInputCadastro(type) {
+            const tiposLoginDiv = document.getElementById('tipos-cadastro');
+
+            // Remove todos os inputs dentro da div tipos-login
+            while (tiposLoginDiv.firstChild) {
+                tiposLoginDiv.removeChild(tiposLoginDiv.firstChild);
+            }
+
+            let input;
+ if (type === 'cpf') {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'CPF';
+                input.maxLength = 14;
+                input.required = true;
+                input.className = 'show1';
+                input.onkeyup = function() { formatCPF(this); };
+            } else if (type === 'cnpj') {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'CNPJ';
+                input.maxLength = 18;
+                input.required = true;
+                input.className = 'show1';
+                input.onkeyup = function() { formatCNPJ(this); };
+            }
+
+            tiposLoginDiv.appendChild(input);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
