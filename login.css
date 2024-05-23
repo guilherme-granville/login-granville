@@ -1,21 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 
-/* @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-@keyframes fadeout {
-    from { opacity: 1; }
-    to   { opacity: 0; }
-}
-
-.fade {
-    animation: fadeout 0.2s, fadein 0.2s 0.2s;
-    animation-fill-mode: forwards;
-  } */
-
 * {
     margin: 0;
     padding: 0;
@@ -23,6 +8,7 @@
     text-decoration: none;
     color: #ffffff;
     font-family: "Quicksand", sans-serif;
+    text-align: center;
 }
 
 html {
