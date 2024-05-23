@@ -76,7 +76,7 @@ main form .inputs-container input:focus {
     box-shadow: inset 1px 4px 7px rgba(0, 0, 0, 0.5);
 }
 
-.inputs-container{
+.inputs-container:{
     text-align: center;
 }
 
@@ -218,6 +218,7 @@ main form footer a:hover {
 ::placeholder{
     color: #ffffff;
     opacity: 0.6;
+    text-align: center;
 }
 
 .cadastro-inputs span{
