@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
@@ -14,18 +13,16 @@ html {
     font-size: 100%;
 }
 
-
-body{
+body {
     overflow: hidden;
     background: linear-gradient(to top, #0a0a0a, #616161);
 }
-
 
 main {
     width: 100%;
     min-height: 100vh;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.25);
 }
@@ -45,7 +42,7 @@ main form {
 main form .makelogin {
     font-size: 20px;
     margin-top: 5px;
-    margin-bottom:0px;
+    margin-bottom: 0px;
 }
 
 main form .inputs-container {
@@ -56,7 +53,6 @@ main form .inputs-container {
     flex-direction: column;
     align-items: center;
 }
-
 
 main form .inputs-container input {
     width: 90%;
@@ -76,10 +72,6 @@ main form .inputs-container input:focus {
     box-shadow: inset 1px 4px 7px rgba(0, 0, 0, 0.5);
 }
 
-.inputs-container:{
-    text-align: center;
-}
-
 main form .password-container {
     margin-top: 5%;
     width: 100%;
@@ -88,7 +80,6 @@ main form .password-container {
     flex-direction: column;
     align-items: center;
 }
-
 
 main form .password-infos {
     width: 90%;
@@ -171,22 +162,22 @@ main form footer a:hover {
     color: #480d8b;
     cursor: pointer;
 }
-.voltar{
+
+.voltar {
     margin: 10px;
     align-items: left;
     text-decoration: underline;
 }
 
-.message{
+.message {
     display: block;
-
 }
 
-.logins{
+.logins {
     display: inline;
 }
 
-.logins span{
+.logins span {
     margin-top: 60px;
     padding: 5px;
     border: #ffffff 1px solid;
@@ -194,18 +185,17 @@ main form footer a:hover {
     transition: 0.2s ease-in-out;
 }
 
-.logins p{
+.logins p {
     text-align: center;
     padding-bottom: 10px;
 }
 
-
-.logins span:hover{
+.logins span:hover {
     color: #7c3ac7;
     cursor: pointer;
 }
 
-.tipos-login{
+.tipos-login {
     margin-top: 5%;
     width: 100%;
     position: relative;
@@ -214,33 +204,50 @@ main form footer a:hover {
     align-items: center;
 }
 
-
-::placeholder{
+::placeholder {
     color: #ffffff;
     opacity: 0.6;
     text-align: center;
 }
 
-.cadastro-inputs span{
+.cadastro-inputs span {
     padding: 5px;
     border: #ffffff 1px solid;
     border-radius: 10px;
     transition: 0.2s ease-in-out;
 }
-.cadastro-inputs{
+
+.cadastro-inputs {
     text-align: center;
-    
 }
 
-.cadastro-inputs span:hover{
+.cadastro-inputs span:hover {
     color: #7c3ac7;
     cursor: pointer;
 }
 
-.email-cadastro{
+.email-cadastro {
     margin-bottom: 15px;
 }
 
-#cpf{
+#cpf {
     margin: 0;
+}
+
+/* Regras de mídia para tornar o layout responsivo */
+
+@media only screen and (max-width: 768px) {
+    main form {
+        width: 80%;
+    }
+
+    main form .inputs-container input {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    main form {
+        width: 90%;
+    }
 }
